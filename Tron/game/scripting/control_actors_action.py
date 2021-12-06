@@ -46,24 +46,5 @@ class ControlActorsAction(Action):
         if self._keyboard_service.is_key_down('s'):
             self._direction = Point(0, constants.CELL_SIZE)
         
-        cycle_1 = cast.get_first_actor("cycle_1")
-        cycle_1.turn_head(self._direction)
-
-        # left
-        if self._keyboard_service.is_key_down('j'):
-            self._direction_2 = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-        if self._keyboard_service.is_key_down('l'):
-            self._direction_2 = Point(constants.CELL_SIZE, 0)
-
-        # up
-        if self._keyboard_service.is_key_down('i'):
-            self._direction_2 = Point(0, -constants.CELL_SIZE)
-
-        # down
-        if self._keyboard_service.is_key_down('k'):
-            self._direction_2 = Point(0, constants.CELL_SIZE)
-
-        cycle_2 = cast.get_first_actor("cycle_2")
-        cycle_2.turn_head(self._direction_2)
+        player = cast.get_first_actor("Player")
+        player.turn_head(self._direction)

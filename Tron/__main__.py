@@ -1,7 +1,7 @@
 import constants
 
 from game.casting.cast import Cast
-from game.casting.lightcycle import LightCycle
+from game.casting.lightcycle import GalagaPlayer
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -18,12 +18,10 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("cycle_1", LightCycle())
-    cycle_1 = cast.get_first_actor("cycle_1")
-    cycle_1.prepare_body(Point(50, 50), Point(constants.CELL_SIZE, 0), constants.YELLOW)
-    cast.add_actor("cycle_2", LightCycle())
-    cycle_2 = cast.get_first_actor("cycle_2")
-    cycle_2.prepare_body(Point(845, 545), Point(constants.CELL_SIZE, 0), constants.RED)
+    cast.add_actor("Player", GalagaPlayer())
+    player = cast.get_first_actor("Player")
+    player.prepare_player(Point(constants.MAX_X // 2, 575), Point(constants.CELL_SIZE, 0), constants.YELLOW)
+    
 
     # start the game
     keyboard_service = KeyboardService()
