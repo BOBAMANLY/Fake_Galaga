@@ -1,6 +1,2 @@
-# cse210-tp04
- Greed Game
-
-Team Members
-
-Spencer Damiano | dam17003@byui.edu
+# cse210-tp05
+tron knock off game for out team project
