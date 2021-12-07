@@ -47,11 +47,20 @@ class VideoService:
             
         pyray.draw_text(text, x, y, font_size, color)
         
-    def draw_actors(self, actors, centered=False):
+    def draw_players(self, actors, centered=False):
         """Draws the text for the given list of actors on the screen.
 
         Args:
             actors (list): A list of actors to draw.
+        """ 
+        
+        self.draw_actor(actors, centered)
+
+    def draw_enemies(self, actors, centered=False):
+        """Draws the text for the given list of enemies on the screen.
+
+        Args:
+            actors (list): A list of enemies to draw.
         """ 
         for actor in actors:
             self.draw_actor(actor, centered)

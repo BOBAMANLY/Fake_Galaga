@@ -20,5 +20,5 @@ class GalagaPlayer(Actor):
         player = Actor()
         player.set_position(position)
         player.set_velocity(velocity)
-        player.set_text("^#^")
+        player.set_text("#")
         player.set_color(color)

@@ -47,4 +47,4 @@ class ControlActorsAction(Action):
             self._direction = Point(0, constants.CELL_SIZE)
         
         player = cast.get_first_actor("Player")
-        player.turn_head(self._direction)
+        player.set_velocity(self._direction)

@@ -1,7 +1,7 @@
 import constants
 
 from game.casting.cast import Cast
-from game.casting.lightcycle import GalagaPlayer
+from game.casting.galagaplayer import GalagaPlayer
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -20,7 +20,7 @@ def main():
     cast = Cast()
     cast.add_actor("Player", GalagaPlayer())
     player = cast.get_first_actor("Player")
-    player.prepare_player(Point(constants.MAX_X // 2, 575), Point(constants.CELL_SIZE, 0), constants.YELLOW)
+    player.prepare_player(Point(constants.MAX_X // 2, constants.MAX_Y // 2), Point(constants.CELL_SIZE, 0), constants.YELLOW)
     
 
     # start the game
