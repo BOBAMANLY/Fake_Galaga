@@ -25,26 +25,26 @@ class HandleShipMissleCollision(UpdateAction):
 
         for ship in ship_list:
             if ship is not None:
-                for missle in actors.get_actors("missle"):
+                for missle in actors.get_actors("bullets"):
                     if self._physics_service.check_collision(ship, missle):
                         if ship == self._ship_1:
                             actors.remove_actor("ship", self._ship_1)
-                            actors.remove_actor("missle", missle)
+                            actors.remove_actor("bullets", missle)
                             self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
                             self._ship_1 = None
                         elif ship == self._ship_2:
                             actors.remove_actor("ship_2", self._ship_2)
-                            actors.remove_actor("missle", missle)
+                            actors.remove_actor("bullets", missle)
                             self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
                             self._ship_2 = None
                         elif ship == self._ship_3:
                             actors.remove_actor("ship_3", self._ship_3)
-                            actors.remove_actor("missle", missle)
+                            actors.remove_actor("bullets", missle)
                             self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
                             self._ship_3 = None
                         elif ship == self._ship_4:
                             actors.remove_actor("ship_4", self._ship_4)
-                            actors.remove_actor("missle", missle)
+                            actors.remove_actor("bullets", missle)
                             self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
                             self._ship_4 = None
 
