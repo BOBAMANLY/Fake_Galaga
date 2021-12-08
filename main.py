@@ -6,6 +6,7 @@ from genie.services import *
 from astroid.cast.ship import Ship
 from astroid.cast.background import Background
 from astroid.cast.startGameButton import StartGameButton
+from astroid.cast.play_box import Play_box
 
 from astroid.script.HandleQuitAction import HandleQuitAction
 from astroid.script.HandleShipMovementAction import HandleShipMovementAction
@@ -104,6 +105,10 @@ def main():
                                     x = W_SIZE[0]/2,
                                     y = W_SIZE[1]/2)
 
+    # adding the play box
+
+    play_box = Play_box("astroid/assets/play_box.png", width=W_SIZE[0]* .8, height=W_SIZE[1]* .8, x = W_SIZE[0]/2, y = W_SIZE[1]/2)
+
     # Start game button
     start_button = StartGameButton(path="astroid/assets/others/start_button.png",
                                     width = 305,
@@ -118,6 +123,7 @@ def main():
     cast.add_actor("ship_3", ship_3)
     cast.add_actor("ship_4", ship_4)
     cast.add_actor("start_button", start_button)
+    cast.add_actor("play_box", play_box)
 
 
     # Create all the actions

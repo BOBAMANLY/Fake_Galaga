@@ -6,6 +6,9 @@ class HandleOffscreenAction(UpdateAction):
         super().__init__(priority)
         self._window_size = window_size
         self._ship = None
+        self._ship_2 = None
+        self._ship_3 = None
+        self._ship_4 = None
         self._mother_ship = None
 
     def execute(self, actors, actions, clock, callback):
@@ -15,17 +18,50 @@ class HandleOffscreenAction(UpdateAction):
         """
         # Look for the ship
         self._ship = actors.get_first_actor("ship")
+        self._ship_2 = actors.get_first_actor("ship_2")
+        self._ship_3 = actors.get_first_actor("ship_3")
+        self._ship_4 = actors.get_first_actor("ship_4")
         
         # Don't allow the ship to go off the screen
         if (self._ship != None):
-            if self._ship.get_top_right()[0] >= self._window_size[0]:
-                self._ship.set_x(int(self._window_size[0] - self._ship.get_width()/2))
-            if self._ship.get_top_left()[0] <= 0:
-                self._ship.set_x(int(self._ship.get_width()/2))
-            if self._ship.get_bottom_left()[1] >= self._window_size[1]:
-                self._ship.set_y(int(self._window_size[1] - self._ship.get_height()/2))
-            if self._ship.get_top_left()[1] <= 0:
-                self._ship.set_y(int(self._ship.get_height()/2))
+            if self._ship.get_top_right()[0] >= self._window_size[0] * .9 - 40:
+                self._ship.set_x(int((self._window_size[0] * .9 - 40) - self._ship.get_width()/2))
+            if self._ship.get_top_left()[0] <= self._window_size[0] * .1 + 40:
+                self._ship.set_x(int((self._window_size[0] * .1 + 40) + self._ship.get_width()/2))
+            # if self._ship.get_bottom_left()[1] >= self._window_size[1]:
+            #     self._ship.set_y(int((self._window_size[1] * .8) - self._ship.get_height()/2))
+            # if self._ship.get_top_left()[1] <= 0:
+            #     self._ship.set_y(int(self._ship.get_height()/2))
+
+        if (self._ship_2 != None):
+            if self._ship_2.get_top_right()[0] >= self._window_size[0] * .9 - 40:
+                self._ship_2.set_x(int((self._window_size[0] * .9 - 40) - self._ship_2.get_width()/2))
+            if self._ship_2.get_top_left()[0] <= self._window_size[0] * .1 + 40:
+                self._ship_2.set_x(int((self._window_size[0] * .1 + 40) + self._ship_2.get_width()/2))
+            # if self._ship_2.get_bottom_left()[1] >= self._window_size[1]:
+            #     self._ship_2.set_y(int(self._window_size[1] - self._ship_2.get_height()/2))
+            # if self._ship_2.get_top_left()[1] <= 0:
+            #     self._ship_2.set_y(int(self._ship_2.get_height()/2))
+
+        if (self._ship_3 != None):
+            # if self._ship_3.get_top_right()[0] >= self._window_size[0]:
+            #     self._ship_3.set_x(int(self._window_size[0] - self._ship_3.get_width()/2))
+            # if self._ship_3.get_top_left()[0] <= 0:
+            #     self._ship_3.set_x(int(self._ship_3.get_width()/2))
+            if self._ship_3.get_bottom_left()[1] >= self._window_size[1]:
+                self._ship_3.set_y(int(self._window_size[1] - self._ship_3.get_height()/2))
+            if self._ship_3.get_top_left()[1] <= 0:
+                self._ship_3.set_y(int(self._ship_3.get_height()/2))
+                
+        if (self._ship_4 != None):
+            # if self._ship_4.get_top_right()[0] >= self._window_size[0]:
+            #     self._ship_4.set_x(int(self._window_size[0] - self._ship_4.get_width()/2))
+            # if self._ship_4.get_top_left()[0] <= 0:
+            #     self._ship_4.set_x(int(self._ship_4.get_width()/2))
+            if self._ship_4.get_bottom_left()[1] >= self._window_size[1]:
+                self._ship_4.set_y(int(self._window_size[1] - self._ship_4.get_height()/2))
+            if self._ship_4.get_top_left()[1] <= 0:
+                self._ship_4.set_y(int(self._ship_4.get_height()/2))
         
         # If it's a bullet or astroid goin off the screen, just remove it.
         for actor in actors.get_actors("astroids"):
