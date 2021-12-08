@@ -15,7 +15,7 @@ from astroid.script.HandleStartGameAction import HandleStartGameAction
 from astroid.script.MoveActorsAction import MoveActorsAction
 from astroid.script.SpawnAstroidsAction import SpawnAstroidsAction
 from astroid.script.HandleOffscreenAction import HandleOffscreenAction
-from astroid.script.HandleShipAstroidsCollision import HandleShipAstroidsCollision
+from astroid.script.HandleShipMissleCollision import HandleShipMissleCollision
 from astroid.script.HandleBulletsAstroidsCollision import HandleBulletsAstroidsCollision
 
 from astroid.script.DrawActorsAction import DrawActorsAction
@@ -136,7 +136,7 @@ def main():
     # Create update actions
     script.add_action("update", MoveActorsAction(1, physics_service))
     script.add_action("update", HandleOffscreenAction(1, W_SIZE))
-    script.add_action("update", HandleShipAstroidsCollision(1, physics_service, audio_service))
+    script.add_action("update", HandleShipMissleCollision(1, physics_service, audio_service))
     script.add_action("update", HandleBulletsAstroidsCollision(1, physics_service, audio_service))
 
     # Create output actions
