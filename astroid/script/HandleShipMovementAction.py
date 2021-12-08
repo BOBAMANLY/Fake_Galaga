@@ -8,6 +8,9 @@ class HandleShipMovementAction(InputAction):
         super().__init__(priority)
         self._keyboard_service = keyboard_service
         self._ship = None
+        self._ship_2 = None
+        self._ship_3 = None
+        self._ship_4 = None
 
     def execute(self, actors, actions, clock, callback):
         """
