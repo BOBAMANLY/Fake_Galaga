@@ -55,6 +55,15 @@ class Actor:
         self._rotation_vel = rotation_vel
 
         self._flipped = flipped
+
+        self._name = ""
+
+    # Get and set name
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
         
     # Path
     def get_path(self):

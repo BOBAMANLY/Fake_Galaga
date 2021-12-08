@@ -70,6 +70,7 @@ def main():
                     y = W_SIZE[1]/10 * 9,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=180)
+    ship.set_name("ship")
     
     # Top
     ship_2 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
@@ -79,6 +80,8 @@ def main():
                     y = W_SIZE[1]/10 ,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=0)
+    ship.set_name("ship_2")
+
     # Right
     ship_3 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
                     width = 70,
@@ -87,6 +90,7 @@ def main():
                     y = W_SIZE[1]/2,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=90)
+    ship.set_name("ship_3")
     
     # Left
     ship_4 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
@@ -96,6 +100,7 @@ def main():
                     y = W_SIZE[1]/2,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=270)
+    ship.set_name("ship_4")
 
     # Scale the background to have the same dimensions as the Window,
     # then position it at the center of the screen

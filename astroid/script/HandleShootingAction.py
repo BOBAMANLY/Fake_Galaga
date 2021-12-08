@@ -17,16 +17,17 @@ class HandleShootingAction(InputAction):
         self._ship_3 = None
         self._ship_4 = None
         self._last_bullet_spawn = time.time()  # seconds
+        self._last_bullet_dict = {"ship": self._last_bullet_spawn, "ship_2": self._last_bullet_spawn, "ship_3": self._last_bullet_spawn, "ship_4": self._last_bullet_spawn}
         self._keyboard_service = keyboard_service
         self._audio_service = audio_service
     
-    def _spawn_bullet(self, clock, actors, bullet_vx, bullet_vy, ship, rotation):
+    def _spawn_bullet(self, clock, actors, bullet_vx, bullet_vy, ship, rotation, name):
         """
             Only spawn a bullet if:
                 - The time from the last time bullet spawn until now is >= ATTACK_INTERVAL
                 - The ship is still alive (not None)
         """
-        time_since_last_shot = time.time() - self._last_bullet_spawn     #Measured in seconds
+        time_since_last_shot = time.time() - self._last_bullet_dict[name]     #Measured in seconds
         if self._ship != None and time_since_last_shot >= ATTACK_INTERVAL:
             # Bullet's starting position should be right on top of the ship
             bullet_x = ship.get_x()
@@ -44,6 +45,7 @@ class HandleShootingAction(InputAction):
 
             # Record the time this bullet spawns
             self._last_bullet_spawn = time.time()
+            self._last_bullet_dict[name] = self._last_bullet_spawn
 
     def execute(self, actors, actions, clock, callback):
         """
@@ -54,17 +56,17 @@ class HandleShootingAction(InputAction):
         
         # If Space is pressed, spawn a bullet
         if self._keyboard_service.is_key_down(keys.UP) or self._keyboard_service.is_key_down(keys.DOWN):
-            self._spawn_bullet(clock, actors, 0, -10, self._ship, self._ship.get_rotation())
+            self._spawn_bullet(clock, actors, 0, -10, self._ship, self._ship.get_rotation(), "ship")
 
         self._ship_2 = actors.get_first_actor("ship_2")
         if self._keyboard_service.is_key_down(keys.S) or self._keyboard_service.is_key_down(keys.W):
-            self._spawn_bullet(clock, actors, 0, 10, self._ship_2, self._ship_2.get_rotation())
+            self._spawn_bullet(clock, actors, 0, 10, self._ship_2, self._ship_2.get_rotation(), "ship_2")
 
         self._ship_3 = actors.get_first_actor("ship_3")
         if self._keyboard_service.is_key_down(keys.J) or self._keyboard_service.is_key_down(keys.L):
-            self._spawn_bullet(clock, actors, -10, 0, self._ship_3, self._ship_3.get_rotation())
+            self._spawn_bullet(clock, actors, -10, 0, self._ship_3, self._ship_3.get_rotation(), "ship_3")
 
         self._ship_4 = actors.get_first_actor("ship_4")
 
         if self._keyboard_service.is_key_down(keys.KP4) or self._keyboard_service.is_key_down(keys.KP6):
-            self._spawn_bullet(clock, actors, 10, 0, self._ship_4, self._ship_4.get_rotation())
+            self._spawn_bullet(clock, actors, 10, 0, self._ship_4, self._ship_4.get_rotation(), "ship_4")
