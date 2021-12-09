@@ -14,7 +14,7 @@ from astroid.script.HandleShootingAction import HandleShootingAction
 from astroid.script.HandleStartGameAction import HandleStartGameAction
 
 from astroid.script.MoveActorsAction import MoveActorsAction
-from astroid.script.SpawnAstroidsAction import SpawnAstroidsAction
+from astroid.script.SpawnEnemiesAction import SpawnEnemiesAction
 from astroid.script.HandleOffscreenAction import HandleOffscreenAction
 from astroid.script.HandleShipMissleCollision import HandleShipMissleCollision
 from astroid.script.HandleBulletsAstroidsCollision import HandleBulletsAstroidsCollision
@@ -141,7 +141,7 @@ def main():
     startgame_actions = {"input" : [], "update" : [], "output": []}
     startgame_actions["input"].append(HandleShootingAction(1, keyboard_service, audio_service))
     startgame_actions["input"].append(HandleShipMovementAction(2, keyboard_service))
-    startgame_actions["update"].append(SpawnAstroidsAction(1, W_SIZE))
+    startgame_actions["update"].append(SpawnEnemiesAction(1, W_SIZE))
     script.add_action("input", HandleStartGameAction(2, mouse_service, physics_service, startgame_actions))
 
     # Create update actions
