@@ -24,8 +24,13 @@ class SpawnEnemiesAction(UpdateAction):
             This is a helper function that creates an astroid based on
             the input "type" and the initial position
         """
-        vel_x = -1 if x > self._window_size[0] / 2 else 1
-        vel_y = 3
+        
+        # possible_vel is a list of possible velocities that the emeny can have
+        possible_vel = [-3, -2, -1, 1, 2, 3]
+
+        # randomly picks a velicity. this makes the direction when spawned in random
+        vel_x = possible_vel[random.randint(0,5)]
+        vel_y = possible_vel[random.randint(0,5)]
         choice = random.randint(1,2)
         if choice == 1:
             enemy = "astroid/assets/astroids/galaga_enemy_cropped-removebg-preview.png"
@@ -58,16 +63,8 @@ class SpawnEnemiesAction(UpdateAction):
             # Pick a random type of astroid: Small, Medium, Large
             astroid_type = random.randint(1,3)
 
-            # Generate a random position on top of the screen,
-            #  limit the spawn range from 1/8 of the screen to 7/8 of the screen
-            lower_x_bound = int(self._window_size[0] / 8)
-            upper_x_bound = int(self._window_size[0] - lower_x_bound)
-
-            start_pos_x = random.randint(lower_x_bound, upper_x_bound) 
-            start_pos_y = 0
-
-            # spawn an astroid
-            astroid = self._create_enemy(start_pos_x, start_pos_y)
+            # spawn an astroid within a random point within the play_box
+            astroid = self._create_enemy(random.randint(150, 850), random.randint(150, 850))
             actors.add_actor("astroids", astroid)
 
             # set last_spawn to current frame
