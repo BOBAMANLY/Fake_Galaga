@@ -1,5 +1,6 @@
 class Actor:
-    def __init__(self, path : str,
+    def __init__(self,
+                    path : str,
                     width : int,
                     height : int,
 
@@ -57,6 +58,7 @@ class Actor:
         self._flipped = flipped
 
         self._name = ""
+        self._team = ""
 
     # Get and set name
     def get_name(self):
@@ -64,6 +66,13 @@ class Actor:
 
     def set_name(self, name):
         self._name = name
+
+    # Get and set team
+    def get_team(self):
+        return self._team
+
+    def set_team(self, team):
+        self._team = team
         
     # Path
     def get_path(self):

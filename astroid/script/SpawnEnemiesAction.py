@@ -26,7 +26,12 @@ class SpawnEnemiesAction(UpdateAction):
         """
         vel_x = -1 if x > self._window_size[0] / 2 else 1
         vel_y = 3
-        return Astroid("astroid/assets/astroids/galaga_enemy.png",
+        choice = random.randint(1,2)
+        if choice == 1:
+            enemy = "astroid/assets/astroids/galaga_enemy_cropped-removebg-preview.png"
+        elif choice == 2:
+            enemy = "astroid/assets/astroids/galaga_enemy_2_cropped-removebg-preview.png"
+        return Astroid(enemy,
                         health_bar_y_offset=LARGE_SIZE[1]/2+5,
                         health_bar_height=5,
                         width = LARGE_SIZE[0],

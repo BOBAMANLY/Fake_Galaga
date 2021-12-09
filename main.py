@@ -18,9 +18,14 @@ from astroid.script.SpawnEnemiesAction import SpawnEnemiesAction
 from astroid.script.HandleOffscreenAction import HandleOffscreenAction
 from astroid.script.HandleShipMissleCollision import HandleShipMissleCollision
 from astroid.script.HandleBulletsAstroidsCollision import HandleBulletsAstroidsCollision
+from astroid.script.HandleMissileMissileCollision import HandleBulletsBulletsCollision
 
 from astroid.script.DrawActorsAction import DrawActorsAction
 from astroid.script.UpdateScreenAction import UpdateScreenAction
+
+from astroid.cast.team_score import Team_Score
+
+from astroid.script.DrawScoreAction import DrawScoreAction
 
 
 W_SIZE = (1000, 1000)
@@ -71,16 +76,18 @@ def main():
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=180)
     ship.set_name("ship")
+    ship.set_team("yellow")
     
     # Top
-    ship_2 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
+    ship_2 = Ship(path="astroid/assets/spaceship/spaceship_red.png", 
                     width = 70,
                     height = 50,
                     x = W_SIZE[0]/2,
                     y = W_SIZE[1]/10 ,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=0)
-    ship.set_name("ship_2")
+    ship_2.set_name("ship_2")
+    ship_2.set_team("red")
 
     # Right
     ship_3 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
@@ -90,17 +97,19 @@ def main():
                     y = W_SIZE[1]/2,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=90)
-    ship.set_name("ship_3")
+    ship_3.set_name("ship_3")
+    ship_3.set_team("yellow")
     
     # Left
-    ship_4 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
+    ship_4 = Ship(path="astroid/assets/spaceship/spaceship_red.png", 
                     width = 70,
                     height = 50,
                     x = W_SIZE[0]/10,
                     y = W_SIZE[1]/2,
                     # y = mother_ship.get_top_left()[1] - 30,
                     rotation=270)
-    ship.set_name("ship_4")
+    ship_4.set_name("ship_4")
+    ship_4.set_team("red")
 
     # Scale the background to have the same dimensions as the Window,
     # then position it at the center of the screen
@@ -130,6 +139,10 @@ def main():
     cast.add_actor("start_button", start_button)
     cast.add_actor("play_box", play_box)
 
+    score = Team_Score(path="", score = 0)
+    cast.add_actor("team_score_1", score)
+    cast.add_actor("team_score_2", score)
+
 
     # Create all the actions
     script = Script()
@@ -149,10 +162,13 @@ def main():
     script.add_action("update", HandleOffscreenAction(1, W_SIZE))
     script.add_action("update", HandleShipMissleCollision(1, physics_service, audio_service))
     script.add_action("update", HandleBulletsAstroidsCollision(1, physics_service, audio_service))
+    script.add_action("update", HandleBulletsBulletsCollision(1, physics_service, audio_service))
 
     # Create output actions
     script.add_action("output", DrawActorsAction(1, screen_service))
+    script.add_action("output", DrawScoreAction(1, screen_service))
     script.add_action("output", UpdateScreenAction(2, screen_service))
+
 
     # Give the cast and script to the dirrector by calling direct_scene.
     # direct_scene then runs the main game loop:

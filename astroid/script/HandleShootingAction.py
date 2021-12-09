@@ -46,7 +46,14 @@ class HandleShootingAction(InputAction):
             
             # Spawn bullet
             bullet = Bullet("astroid/assets/bullet.png", 20, 30, x = bullet_x, y = bullet_y, vx = bullet_vx, vy = bullet_vy)
-            actors.add_actor("bullets", bullet)
+            if name == "ship":
+                actors.add_actor("bullets_1", bullet)
+            if name == "ship_2":
+                actors.add_actor("bullets_2", bullet)
+            if name == "ship_3":
+                actors.add_actor("bullets_3", bullet)
+            if name == "ship_4":
+                actors.add_actor("bullets_4", bullet)
 
             # Rotate the bullet to which player shot
             bullet.set_rotation(rotation)

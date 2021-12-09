@@ -1,6 +1,6 @@
 from genie.cast.actor import Actor
 
-class PlayerScore(Actor):
+class Team_Score(Actor):
     def __init__(self, path: str,
                 width: int = 0, 
                 height: int = 0, 
