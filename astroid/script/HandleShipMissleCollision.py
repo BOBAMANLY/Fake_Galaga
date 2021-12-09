@@ -23,6 +23,18 @@ class HandleShipMissleCollision(UpdateAction):
 
         ship_list = [self._ship_1, self._ship_2, self._ship_3, self._ship_4]
 
+        missile_list_team_1 = []
+        for missile in actors.get_actors("bullets_1"):
+            missile_list_team_1.append(missile)
+        for missile in actors.get_actors("bullets_3"):
+            missile_list_team_1.append(missile)
+
+        missile_list_team_2 = []
+        for missile in actors.get_actors("bullets_2"):
+            missile_list_team_2.append(missile)
+        for missile in actors.get_actors("bullets_4"):
+            missile_list_team_2.append(missile)
+
         for ship in ship_list:
             if ship is not None:
                 for missle in actors.get_actors("bullets"):
