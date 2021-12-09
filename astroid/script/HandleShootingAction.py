@@ -39,7 +39,7 @@ class HandleShootingAction(InputAction):
                 bullet_y += 80
             if name == "ship_3":
                 bullet_x -= 50
-                bullet_y -= 20
+                bullet_y += 20
             if name == "ship_4":
                 bullet_x += 50
                 bullet_y += 20
