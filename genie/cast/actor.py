@@ -59,6 +59,7 @@ class Actor:
 
         self._name = ""
         self._team = ""
+        self._is_dead = False
 
     # Get and set name
     def get_name(self):
@@ -66,6 +67,13 @@ class Actor:
 
     def set_name(self, name):
         self._name = name
+
+    # get and set is_dead
+    def get_is_dead(self):
+        return self._is_dead
+
+    def set_is_dead(self, is_dead):
+        self._is_dead = is_dead
 
     # Get and set team
     def get_team(self):

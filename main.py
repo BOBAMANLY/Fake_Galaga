@@ -139,8 +139,8 @@ def main():
     cast.add_actor("start_button", start_button)
     cast.add_actor("play_box", play_box)
 
-    score_1 = Team_Score(path="", score = 0)
-    score_2 = Team_Score(path="", score = 0)
+    score_1 = Team_Score(path="", score = 50)
+    score_2 = Team_Score(path="", score = 50)
     cast.add_actor("team_score_1", score_1)
     cast.add_actor("team_score_2", score_2)
 

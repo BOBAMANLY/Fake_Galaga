@@ -36,3 +36,9 @@ class DrawScoreAction(OutputAction):
             #         break
         if self._score_1 != None:
             self._screen_service.draw_text("Score: " + str(self._score_1.get_score()), font_size=48, color=colors.WHITE, position= (700,900))
+
+
+        if self._score_1.get_score() <= 0 or self._score_2.get_score() <= 0:
+            self._screen_service.draw_text("GAME OVER", font_size=48, color=colors.WHITE, position= (500,500))  
+
+          
