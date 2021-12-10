@@ -167,7 +167,7 @@ def main():
 
     # Create output actions
     script.add_action("output", DrawActorsAction(1, screen_service))
-    script.add_action("output", DrawScoreAction(1, screen_service))
+    script.add_action("output", DrawScoreAction(1, screen_service, cast))
     script.add_action("output", UpdateScreenAction(2, screen_service))
 
 
