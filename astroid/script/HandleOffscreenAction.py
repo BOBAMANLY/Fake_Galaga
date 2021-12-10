@@ -12,7 +12,7 @@ class HandleOffscreenAction(UpdateAction):
         self._ship_2 = None
         self._ship_3 = None
         self._ship_4 = None
-        self._astroid = None
+        self._astroids = None
         self._mother_ship = None
 
     def execute(self, actors, actions, clock, callback):
@@ -25,7 +25,7 @@ class HandleOffscreenAction(UpdateAction):
         self._ship_2 = actors.get_first_actor("ship_2")
         self._ship_3 = actors.get_first_actor("ship_3")
         self._ship_4 = actors.get_first_actor("ship_4")
-        self._astroid = actors.get_first_actor("astroids")
+        self._astroids = actors.get_actors("astroids")
         
         # Don't allow the ship to go off the screen
         if (self._ship != None):
@@ -68,28 +68,60 @@ class HandleOffscreenAction(UpdateAction):
             if self._ship_4.get_top_left()[1] <= self._window_size[0] * .1 + 55:
                 self._ship_4.set_y(int((self._window_size[0] * .1 + 45) + self._ship_4.get_width()/2))
         
-        # will keep the astroids or the enemies within the play box
-        if self._astroid != None:
+        for astroid in self._astroids:
+            # will keep the astroids or the enemies within the play box
+            if astroid != None:
 
-            # this is reversing the velocity so they stay within the play box
+                # this is reversing the velocity so they stay within the play box
 
-            if self._astroid.get_x() >= self._window_size[0] * .8 :
-                vx = self._astroid.get_vx()
-                self._astroid.set_vx(vx * -1)
-            if self._astroid.get_x() <= self._window_size[0] * .2:
-                vx = self._astroid.get_vx()
-                self._astroid.set_vx(vx * -1)
-            if self._astroid.get_y() >= self._window_size[1] * .8:
-                vy = self._astroid.get_vy()
-                self._astroid.set_vy(vy * -1)
-            if self._astroid.get_y() <= self._window_size[1] * .2:
-                vy = self._astroid.get_vy()
-                self._astroid.set_vy(vy * -1)
-        # If it's a bullet or astroid goin off the screen, just remove it.
+                if astroid.get_x() >= self._window_size[0] * .8:
+                    vx = astroid.get_vx()
+                    astroid.set_vx(vx * -1)
+                if astroid.get_x() <= self._window_size[0] * .2:
+                    vx = astroid.get_vx()
+                    astroid.set_vx(vx * -1)
+                if astroid.get_y() >= self._window_size[1] * .8:
+                    vy = astroid.get_vy()
+                    astroid.set_vy(vy * -1)
+                if astroid.get_y() <= self._window_size[1] * .2:
+                    vy = astroid.get_vy()
+                    astroid.set_vy(vy * -1)
+
+        # If it's a astroid going off the screen, just remove it.
         for actor in actors.get_actors("astroids"):
-            # if isinstance(actor, Astroid) or isinstance(actor, Bullet):
+            # if isinstance(actor, Astroid)
             if (actor.get_x() > self._window_size[0]
                 or actor.get_x() < 0
                 or actor.get_y() > self._window_size[1]
                 or actor.get_y() < 0):
                 actors.remove_actor("astroids", actor)
+
+
+        # Delete all the missles off screen
+        for missile in actors.get_actors("bullets_1"):
+            if (missile.get_x() > self._window_size[0]
+                or missile.get_x() < 0
+                or missile.get_y() > self._window_size[1]
+                or missile.get_y() < 0):
+                actors.remove_actor("bullets_1", missile)
+
+        for missile in actors.get_actors("bullets_2"):
+            if (missile.get_x() > self._window_size[0]
+                or missile.get_x() < 0
+                or missile.get_y() > self._window_size[1]
+                or missile.get_y() < 0):
+                actors.remove_actor("bullets_2", missile)
+
+        for missile in actors.get_actors("bullets_3"):
+            if (missile.get_x() > self._window_size[0]
+                or missile.get_x() < 0
+                or missile.get_y() > self._window_size[1]
+                or missile.get_y() < 0):
+                actors.remove_actor("bullets_3", missile)
+
+        for missile in actors.get_actors("bullets_4"):
+            if (missile.get_x() > self._window_size[0]
+                or missile.get_x() < 0
+                or missile.get_y() > self._window_size[1]
+                or missile.get_y() < 0):
+                actors.remove_actor("bullets_4", missile)
