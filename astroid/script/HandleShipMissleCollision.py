@@ -21,7 +21,8 @@ class HandleShipMissleCollision(UpdateAction):
         self._ship_3 = actors.get_first_actor("ship_3")
         self._ship_4 = actors.get_first_actor("ship_4")
 
-        ship_list = [self._ship_1, self._ship_2, self._ship_3, self._ship_4]
+        ship_list_team_1 = [self._ship_1, self._ship_3]
+        ship_list_team_2 = [self._ship_2, self._ship_4]
 
         missile_list_team_1 = []
         for missile in actors.get_actors("bullets_1"):
@@ -35,30 +36,55 @@ class HandleShipMissleCollision(UpdateAction):
         for missile in actors.get_actors("bullets_4"):
             missile_list_team_2.append(missile)
 
-        for ship in ship_list:
-            if ship is not None:
-                for missle in actors.get_actors("bullets"):
+        for ship in ship_list_team_1:
+            for missle in missile_list_team_2:
+                if ship is not None:
                     if self._physics_service.check_collision(ship, missle):
-                        if ship == self._ship_1:
-                            actors.remove_actor("ship", self._ship_1)
-                            actors.remove_actor("bullets", missle)
-                            self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+                        self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+                        if ship.get_name() == "ship":
+                            actors.remove_actor("ship", ship)
                             self._ship_1 = None
-                        elif ship == self._ship_2:
-                            actors.remove_actor("ship_2", self._ship_2)
-                            actors.remove_actor("bullets", missle)
-                            self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
-                            self._ship_2 = None
-                        elif ship == self._ship_3:
-                            actors.remove_actor("ship_3", self._ship_3)
-                            actors.remove_actor("bullets", missle)
-                            self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+                        elif ship.get_name() == "ship_3":
+                            actors.remove_actor("ship_3", ship)
                             self._ship_3 = None
-                        elif ship == self._ship_4:
-                            actors.remove_actor("ship_4", self._ship_4)
-                            actors.remove_actor("bullets", missle)
-                            self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+
+        for ship in ship_list_team_2:
+            for missle in missile_list_team_1:
+                if ship is not None:
+                    if self._physics_service.check_collision(ship, missle):
+                        self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+                        if ship.get_name() == "ship_2":
+                            actors.remove_actor("ship_2", ship)
+                            self._ship_2 = None
+                        elif ship.get_name() == "ship_4":
+                            actors.remove_actor("ship_4", ship)
                             self._ship_4 = None
+                            
+
+        # for ship in ship_list:
+        #     if ship is not None:
+        #         for missle in actors.get_actors("bullets"):
+        #             if self._physics_service.check_collision(ship, missle):
+        #                 if ship == self._ship_1:
+        #                     actors.remove_actor("ship", self._ship_1)
+        #                     actors.remove_actor("bullets", missle)
+        #                     self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+        #                     self._ship_1 = None
+        #                 elif ship == self._ship_2:
+        #                     actors.remove_actor("ship_2", self._ship_2)
+        #                     actors.remove_actor("bullets", missle)
+        #                     self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+        #                     self._ship_2 = None
+        #                 elif ship == self._ship_3:
+        #                     actors.remove_actor("ship_3", self._ship_3)
+        #                     actors.remove_actor("bullets", missle)
+        #                     self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+        #                     self._ship_3 = None
+        #                 elif ship == self._ship_4:
+        #                     actors.remove_actor("ship_4", self._ship_4)
+        #                     actors.remove_actor("bullets", missle)
+        #                     self._audio_service.play_sound("astroid/assets/sound/explosion-01.wav", 0.1)
+        #                     self._ship_4 = None
 
 
             # Look through the missles and see if any collide with the ship
