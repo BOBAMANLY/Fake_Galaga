@@ -26,6 +26,7 @@ class HandleOffscreenAction(UpdateAction):
         self._ship_3 = actors.get_first_actor("ship_3")
         self._ship_4 = actors.get_first_actor("ship_4")
         self._astroids = actors.get_actors("astroids")
+        self._pwr_ups = actors.get_actors("respawn_pwr")
         
         # Don't allow the ship to go off the screen
         if (self._ship != None):
@@ -86,6 +87,25 @@ class HandleOffscreenAction(UpdateAction):
                 if astroid.get_y() <= self._window_size[1] * .2:
                     vy = astroid.get_vy()
                     astroid.set_vy(vy * -1)
+
+        for pwr_up in self._pwr_ups:
+            # will keep the astroids or the enemies within the play box
+            if pwr_up != None:
+
+                # this is reversing the velocity so they stay within the play box
+
+                if pwr_up.get_x() >= self._window_size[0] * .8:
+                    vx = pwr_up.get_vx()
+                    pwr_up.set_vx(vx * -1)
+                if pwr_up.get_x() <= self._window_size[0] * .2:
+                    vx = pwr_up.get_vx()
+                    pwr_up.set_vx(vx * -1)
+                if pwr_up.get_y() >= self._window_size[1] * .8:
+                    vy = pwr_up.get_vy()
+                    pwr_up.set_vy(vy * -1)
+                if pwr_up.get_y() <= self._window_size[1] * .2:
+                    vy = pwr_up.get_vy()
+                    pwr_up.set_vy(vy * -1)
 
         # If it's a astroid going off the screen, just remove it.
         for actor in actors.get_actors("astroids"):

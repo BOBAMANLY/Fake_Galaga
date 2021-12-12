@@ -27,13 +27,16 @@ from astroid.cast.team_score import Team_Score
 
 from astroid.script.DrawScoreAction import DrawScoreAction
 
+from astroid.script.powerups.SpawnRespawnPowerup import SpawRespawnPwrAction
+from astroid.script.powerups.HandleRespawnPowerup import HandleBulletPowerupCollision
+
 
 W_SIZE = (1000, 1000)
 START_POSITION = 200, 250
 SHIP_WIDTH = 40
 SHIP_LENGTH = 55
 SCREEN_TITLE = "Multi-Galaga"
-
+# 
 def get_services():
     """
         Ask the user whether they want to use pygame or raylib services
@@ -164,6 +167,8 @@ def main():
     script.add_action("update", HandleShipMissleCollision(1, physics_service, audio_service))
     script.add_action("update", HandleBulletsAstroidsCollision(1, physics_service, audio_service))
     script.add_action("update", HandleBulletsBulletsCollision(1, physics_service, audio_service))
+    script.add_action("update", SpawRespawnPwrAction(1,W_SIZE))
+    script.add_action("update", HandleBulletPowerupCollision(1, physics_service, audio_service, cast))
 
     # Create output actions
     script.add_action("output", DrawActorsAction(1, screen_service))

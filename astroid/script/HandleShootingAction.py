@@ -7,7 +7,7 @@ from astroid.cast.bullet import Bullet
 
 # BULLET_VX = 0
 # BULLET_VY = -10
-ATTACK_INTERVAL = 0.25   # seconds
+ATTACK_INTERVAL = .4   # seconds
 
 class HandleShootingAction(InputAction):
     def __init__(self, priority, keyboard_service, audio_service):

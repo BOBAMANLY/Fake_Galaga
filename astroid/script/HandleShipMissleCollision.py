@@ -53,7 +53,7 @@ class HandleShipMissleCollision(UpdateAction):
 
                             #math for death
                             total_score_1 = self._team_score_1.get_score()
-                            penalty = total_score_1 * 0.1
+                            penalty = total_score_1 - 30
                             self._team_score_1.penalize(penalty)
                         elif ship.get_name() == "ship_3":
                             actors.remove_actor("ship_3", ship)
@@ -62,7 +62,7 @@ class HandleShipMissleCollision(UpdateAction):
 
                             #math for death
                             total_score_1 = self._team_score_1.get_score()
-                            penalty = total_score_1 * 0.1
+                            penalty = total_score_1 -30
                             self._team_score_1.penalize(penalty)
 
         for ship in ship_list_team_2:
@@ -77,7 +77,7 @@ class HandleShipMissleCollision(UpdateAction):
 
                             #math for death
                             total_score_2 = self._team_score_2.get_score()
-                            penalty = total_score_2 * 0.5
+                            penalty = total_score_2 -30
                             self._team_score_2.penalize(penalty)
                         elif ship.get_name() == "ship_4":
                             actors.remove_actor("ship_4", ship)
@@ -86,7 +86,7 @@ class HandleShipMissleCollision(UpdateAction):
 
                             #math for death
                             total_score_2 = self._team_score_2.get_score()
-                            penalty = total_score_2 * 0.5
+                            penalty = total_score_2 -30
                             self._team_score_2.penalize(penalty)
                             
 

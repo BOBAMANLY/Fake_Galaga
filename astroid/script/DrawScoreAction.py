@@ -63,7 +63,7 @@ class DrawScoreAction(OutputAction):
         # Respawn
         if self._ship_1 == None:
             if self._score_1.get_score() >= 75:
-                self._score_1.set_score(self._score_1.get_score() * .5)
+                self._score_1.set_score(self._score_1.get_score() // 2)
                 # Bottom
                 self._ship_1 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
                     width = 70,
@@ -80,7 +80,7 @@ class DrawScoreAction(OutputAction):
 
         if self._ship_2 == None:
             if self._score_2.get_score() >= 75:
-                self._score_2.set_score(self._score_2.get_score() * .5)
+                self._score_2.set_score(self._score_2.get_score() // 2)
                 # Top
                 self._ship_2 = Ship(path="astroid/assets/spaceship/spaceship_red.png", 
                     width = 70,
@@ -95,7 +95,7 @@ class DrawScoreAction(OutputAction):
 
         if self._ship_3 == None:
             if self._score_1.get_score() >= 75:
-                self._score_1.set_score(self._score_1.get_score() * .5)
+                self._score_1.set_score(self._score_1.get_score() // 2)
                 # Right
                 self._ship_3 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
                     width = 70,
@@ -110,7 +110,7 @@ class DrawScoreAction(OutputAction):
 
         if self._ship_4 == None:
             if self._score_2.get_score() >= 75:
-                self._score_2.set_score(self._score_2.get_score() * .5)
+                self._score_2.set_score(self._score_2.get_score() // 2)
                 # Left
                 self._ship_4 = Ship(path="astroid/assets/spaceship/spaceship_red.png", 
                     width = 70,
