@@ -53,7 +53,7 @@ class HandleBulletPowerupCollision(UpdateAction):
         bullets_4 = actors.get_actors("bullets_4")
 
         for actor in actors.get_actors("respawn_pwr"):
-            player_str = "ship_1"
+            player_str = "ship"
             bullet_str = "bullets_1"
             bullet_var = bullets_1
 
@@ -107,7 +107,7 @@ class HandleBulletPowerupCollision(UpdateAction):
             bullet_str = "bullets_3"
             bullet_var = bullets_3
 
-            teammate_str = "ship_1"
+            teammate_str = "ship"
             teamate_var = self._ship_1
             
             collided_bullet = self._physics_service.check_collision_list(actor, bullet_var)
@@ -150,7 +150,7 @@ class HandleBulletPowerupCollision(UpdateAction):
                             self._add_one_life(player_str)
 
     def _add_one_life(self, player):
-        if player == "ship_1":
+        if player == "ship":
             self._ship_1_extra += 1
         elif player == "ship_2":
             self._ship_2_extra += 1
@@ -162,7 +162,7 @@ class HandleBulletPowerupCollision(UpdateAction):
     def _see_dead(self):
         if self._ship_1 == None:
             if self._ship_1_extra > 0:
-                self._respawn_player("ship_1")
+                self._respawn_player("ship")
                 self._ship_1_extra -= 1
 
         if self._ship_2 == None:
@@ -185,7 +185,7 @@ class HandleBulletPowerupCollision(UpdateAction):
         ran_x = randint(W_SIZE[0] * .2, W_SIZE[0] * .8) # for random horzantal spawn
         ran_y = randint(W_SIZE[1] * .2, W_SIZE[1] * .8) # for random vertical spawn
 
-        if player == "ship_1" and self._ship_1 == None:
+        if player == "ship" and self._ship_1 == None:
             local_x = ran_x
             local_y = W_SIZE[1]/10 * 9
             local_rotation = 180
@@ -196,9 +196,9 @@ class HandleBulletPowerupCollision(UpdateAction):
                 x = local_x,
                 y = local_y,
                 rotation=local_rotation)
-            self._ship_1.set_name("ship_1")
+            self._ship_1.set_name("ship")
             self._ship_1.set_team("yellow")
-            self._cast.add_actor("ship_1", self._ship_1)
+            self._cast.add_actor("ship", self._ship_1)
         elif player == "ship_2" and self._ship_2 == None:
             local_x = ran_x
             local_y = W_SIZE[1]/10
@@ -219,11 +219,12 @@ class HandleBulletPowerupCollision(UpdateAction):
             local_rotation = 90
 
             self._ship_3 = Ship(path="astroid/assets/spaceship/spaceship_yellow.png", 
-                width = 70,
-                height = 50,
-                x = local_x,
-                y = local_y,
-                rotation=local_rotation)
+                    width = 70,
+                    height = 50,
+                    x = W_SIZE[0]/10 * 9,
+                    y = ran_y,
+                    # y = mother_ship.get_top_left()[1] - 30,
+                    rotation=90)
             self._ship_3.set_name("ship_3")
             self._ship_3.set_team("yellow")
             self._cast.add_actor("ship_3", self._ship_3)
